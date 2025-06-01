@@ -1,4 +1,4 @@
-const { getAccessToken } = require('../services/spotifyService');
+const { getAccessToken } = require('../Services/spotifyService');
 
 function ensureAuth(req, res, next) {
   if (!getAccessToken()) {
