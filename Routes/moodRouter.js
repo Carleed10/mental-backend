@@ -1,8 +1,9 @@
 const express = require('express');
-const router = express.Router();
+const moodRouter = express.Router();
 const { addMood, getMoodHistory } = require('../Controllers/moodController');
+const verifyToken = require('../Middleware/verifyToken');
 
-router.post('/add', addMood);
-router.get('/history/:userId', getMoodHistory);
+moodRouter.post('/add', verifyToken, addMood);
+moodRouter.get('/history/:userId', verifyToken, getMoodHistory);
 
-module.exports = router;
+module.exports = moodRouter;

@@ -1,5 +1,5 @@
 const querystring = require('querystring');
-const { SPOTIFY_CLIENT_ID, SPOTIFY_REDIRECT_URI,} = require('../Config/spotifyConf');
+const { SPOTIFY_CLIENT_ID, SPOTIFY_REDIRECT_URI } = require('../Config/spotifyConf');
 const { requestAccessToken, searchPlaylists } = require('../Services/spotifyService');
 
 const login = (req, res) => {

@@ -17,7 +17,4 @@ userRouter.post('/deleteAccount', verifyToken, deleteAccount)
 // userRouter.post('/verifyOtp', verifyOtp)
 
 
-
-
-
 module.exports = userRouter

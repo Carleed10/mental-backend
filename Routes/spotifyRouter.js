@@ -1,11 +1,13 @@
 const express = require('express');
-const router = express.Router();
+const spotifyRoouter = express.Router();
+const {
+  login,
+  callback,
+  getPlaylistsByMood,
+} = require('../Controllers/spotifyController');
 
-const spotifyController = require('../Controllers/spotifyController');
-const ensureAuth = require('../Middleware/authMiddleware');
+spotifyRoouter.get('/login', login);
+spotifyRoouter.get('/callback', callback);
+spotifyRoouter.get('/playlists/:mood', getPlaylistsByMood);
 
-router.get('/login', spotifyController.login);
-router.get('/callback', spotifyController.callback);
-router.get('/playlists/:mood', ensureAuth, spotifyController.getPlaylistsByMood);
-
-module.exports = router;
+module.exports = spotifyRoouter

@@ -1,12 +1,14 @@
+// Controllers/chatController.js
 const axios = require("axios");
 const Chat = require("../Models/chatModel");
 const detectMood = require("../Utils/moodDetector");
 
 const chatWithAI = async (req, res) => {
-  const { message, userId } = req.body;
+  const { message } = req.body;
+  const userId = req.user.id; // JWT payload should include id
 
-  if (!message || !userId) {
-    return res.status(400).json({ message: "Message and userId are required" });
+  if (!message) {
+    return res.status(400).json({ message: "Message is required" });
   }
 
   const mood = detectMood(message);
@@ -38,7 +40,6 @@ const chatWithAI = async (req, res) => {
 
     const aiReply = response.data.choices[0].message.content;
 
-    // Save chat to DB
     await Chat.findOneAndUpdate(
       { userId },
       {

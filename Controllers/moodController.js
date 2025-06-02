@@ -1,7 +1,8 @@
 const Mood = require('../Models/moodModel');
 
 const addMood = async (req, res) => {
-  const { userId, mood, note } = req.body;
+  const { mood, note } = req.body;
+  const userId = req.user.id;
 
   if (!userId || !mood) {
     return res.status(400).json({ message: 'User ID and mood are required' });
